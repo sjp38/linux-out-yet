@@ -5,6 +5,7 @@ function pr_usage() {
 	echo
 	echo "OPTION"
 	echo "  --repo <path>	Specify local repository"
+	echo "  -h, --help	Show this message"
 	exit 1
 }
 
@@ -21,6 +22,10 @@ do
 		local_repo=$2
 		shift 2
 		continue
+		;;
+	"--help" | "-h")
+		pr_usage
+		exit 0
 		;;
 	*)
 		if [ ! -z "$version" ]
