@@ -1,11 +1,13 @@
 #!/bin/bash
 
 function pr_usage() {
-	echo "Usage: $0 [OPTION]... <version>"
+	echo "Usage: $0 [OPTION]... <base version>"
 	echo
 	echo "OPTION"
 	echo "  --repo <path>	Specify local repository"
 	echo "  -h, --help	Show this message"
+	echo
+	echo "<base version> is, for example, 'v5.' or 'v5.10.'"
 	exit 1
 }
 
