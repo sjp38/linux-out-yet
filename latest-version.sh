@@ -57,25 +57,11 @@ then
 fi
 
 start=0
+# stable versions start from 1
 if [ $(echo "$base_version" | awk -F'.' '{print NF}') -eq 3 ]
 then
 	start=1
 fi
-
-function is_last_version()
-{
-	base=$1
-	last_version=$2
-
-	version=$base$last_version
-	next_version=$base$((last_version + 1))
-
-	if [ $is_out "$version" ] && [ ! $is_out "$next_version" ]
-	then
-		echo 1
-	fi
-	echo 0
-}
 
 if ! $is_out "$base_version$start" > /dev/null
 then
@@ -94,6 +80,7 @@ do
 	end=$((end * 2))
 done
 
+# Do binary search
 start=$((end / 2))
 while [ $start -le $end ]
 do
