@@ -41,6 +41,12 @@ do
 	esac
 done
 
+if [ -z "$version" ]
+then
+	pr_usage
+	exit 1
+fi
+
 if [[ ! "$version" =~ ^v[0-9]+\.[0-9]+ ]]
 then
 	echo "wrong version"
