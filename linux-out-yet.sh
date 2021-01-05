@@ -53,15 +53,15 @@ then
 	exit 1
 fi
 
-major_version=$(echo $version | awk -F'[v.]' '{print $2}')
-if [ $major_version -lt 3 ]
+major_version=$(echo "$version" | awk -F'[v.]' '{print $2}')
+if [ "$major_version" -lt 3 ]
 then
 	echo "Only v3.x or later supported"
 	exit 1
 fi
 
 if [ ! -z "$local_repo" ] && \
-	git --git-dir=$local_repo/.git tag | grep -qe "^$version$"
+	git --git-dir="$local_repo"/.git tag | grep -qe "^$version$"
 then
 	echo "Out"
 	exit 0
@@ -69,12 +69,12 @@ fi
 
 git_kernel_org_url="https://git.kernel.org/pub/scm/linux/kernel/git/"
 
-nr_numbers=$(echo $version | awk -F'.' '{print NF}')
+nr_numbers=$(echo "$version" | awk -F'.' '{print NF}')
 
-if [ $nr_numbers -eq 2 ]
+if [ "$nr_numbers" -eq 2 ]
 then
 	url="$git_kernel_org_url/torvalds/linux.git/tag/?h=$version"
-elif [ $nr_numbers -eq 3 ]
+elif [ "$nr_numbers" -eq 3 ]
 then
 	url="$git_kernel_org_url/stable/linux.git/tag/?h=$version"
 else
