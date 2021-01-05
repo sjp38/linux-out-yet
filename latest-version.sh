@@ -58,7 +58,7 @@ fi
 
 start=0
 # stable versions start from 1
-if [ $(echo "$base_version" | awk -F'.' '{print NF}') -eq 3 ]
+if [ "$(echo "$base_version" | awk -F'.' '{print NF}')" -eq 3 ]
 then
 	start=1
 fi
